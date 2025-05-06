@@ -11,13 +11,18 @@ import (
 const prompt = "and press ENTER when ready."
 
 func main() {
-	// seed the random number generator
 	r := rand.New(rand.NewSource(time.Now().UnixNano()))
 
 	var firstNumber = r.Intn(8) + 2
 	var secondNumber = r.Intn(8) + 2
 	var subtraction = r.Intn(8) + 2
-	var answer int
+	var answer = firstNumber*secondNumber - subtraction
+
+	playTheGame(firstNumber, secondNumber, subtraction, answer)
+}
+
+func playTheGame(firstNumber int, secondNumber int, subtraction int, answer int) {
+	// seed the random number generator
 
 	reader := bufio.NewReader(os.Stdin)
 
@@ -40,6 +45,5 @@ func main() {
 	reader.ReadString('\n')
 
 	// give them the answer
-	answer = firstNumber*secondNumber - subtraction
 	fmt.Println("The answer is", answer)
 }
